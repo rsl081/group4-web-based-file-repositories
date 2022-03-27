@@ -1,0 +1,90 @@
+{
+  "projectType": "application",
+  "root": "apps/faculty",
+  "sourceRoot": "apps/faculty/src",
+  "prefix": "group4-web-based-file-repositories",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/faculty",
+        "index": "apps/faculty/src/index.html",
+        "main": "apps/faculty/src/main.ts",
+        "polyfills": "apps/faculty/src/polyfills.ts",
+        "tsConfig": "apps/faculty/tsconfig.app.json",
+        "assets": ["apps/faculty/src/favicon.ico", "apps/faculty/src/assets"],
+        "styles": ["apps/faculty/src/styles.css"],
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/faculty/src/environments/environment.ts",
+              "with": "apps/faculty/src/environments/environment.prod.ts"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "browserTarget": "faculty:build:production"
+        },
+        "development": {
+          "browserTarget": "faculty:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "faculty:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "apps/faculty/src/**/*.ts",
+          "apps/faculty/src/**/*.html"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/faculty"],
+      "options": {
+        "jestConfig": "apps/faculty/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
