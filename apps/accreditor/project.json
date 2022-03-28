@@ -1,0 +1,93 @@
+{
+  "projectType": "application",
+  "root": "apps/accreditor",
+  "sourceRoot": "apps/accreditor/src",
+  "prefix": "group4-web-based-file-repositories",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/accreditor",
+        "index": "apps/accreditor/src/index.html",
+        "main": "apps/accreditor/src/main.ts",
+        "polyfills": "apps/accreditor/src/polyfills.ts",
+        "tsConfig": "apps/accreditor/tsconfig.app.json",
+        "assets": [
+          "apps/accreditor/src/favicon.ico",
+          "apps/accreditor/src/assets"
+        ],
+        "styles": ["apps/accreditor/src/styles.css"],
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/accreditor/src/environments/environment.ts",
+              "with": "apps/accreditor/src/environments/environment.prod.ts"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "browserTarget": "accreditor:build:production"
+        },
+        "development": {
+          "browserTarget": "accreditor:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "accreditor:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": [
+          "apps/accreditor/src/**/*.ts",
+          "apps/accreditor/src/**/*.html"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/accreditor"],
+      "options": {
+        "jestConfig": "apps/accreditor/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

@@ -1,0 +1,28 @@
+{
+  "root": "apps/accreditor-e2e",
+  "sourceRoot": "apps/accreditor-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nrwl/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/accreditor-e2e/cypress.json",
+        "devServerTarget": "accreditor:serve:development"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "accreditor:serve:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/accreditor-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["accreditor"]
+}
